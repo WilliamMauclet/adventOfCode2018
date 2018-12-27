@@ -1,13 +1,14 @@
 pub mod day_1 {
+    use std::env;
     use std::fs::File;
     use std::io::prelude::*;
 
     pub fn day_1() {
-        let mut file = File::open("/home/wmclt/Projects/adventOfCode2019/rust/res/input.txt")
-            .expect("should work");
+        let path = env::current_dir().unwrap();
+        let mut file = File::open(format!("{}/res/day_1.txt", path.display())).unwrap();
 
         let mut contents = String::new();
-        file.read_to_string(&mut contents).expect("should work");
+        file.read_to_string(&mut contents).unwrap();
 
         let split_string: Vec<&str> = contents.split("\n").collect();
 
@@ -25,10 +26,10 @@ pub mod day_1 {
     fn read_value(value: &str) -> i32 {
         if value.starts_with("+") {
             let split_value: Vec<&str> = value.split("+").collect();
-            return split_value[1].trim().parse::<i32>().expect("should work");
+            return split_value[1].trim().parse::<i32>().unwrap();
         } else if value.starts_with("-") {
             let split_value: Vec<&str> = value.split("-").collect();
-            return -split_value[1].trim().parse::<i32>().expect("should work");
+            return -split_value[1].trim().parse::<i32>().unwrap();
         } else {
             panic!("This shouldn't happen, could not be read value: {}", value);
         }
