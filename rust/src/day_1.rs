@@ -15,8 +15,7 @@ pub mod day_1 {
         let mut result = 0;
         let mut i = 0;
         for value in split_string {
-            // print!("{}:{}\n", i, value);
-            result = result + read_value(&value);
+            result += read_value(&value);
             i = i + 1;
         }
 
